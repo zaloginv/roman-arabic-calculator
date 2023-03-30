@@ -1,14 +1,14 @@
 ROMAN = dict(I=1, V=5, X=10, L=50, C=100, D=500, M=1000)
 OPERANDS = '+-*/'
 LEFT_BORDER = 1
-RIGHT_BORDER = 10
+RIGHT_BORDER = 100
 
 
 def arabic_calc(num1, operand, num2):
     if operand == '+':
         result = num1 + num2
     elif operand == '-':
-        result = num1 - num1
+        result = num1 - num2
     elif operand == '*':
         result = num1 * num2
     elif operand == '/':
@@ -37,6 +37,7 @@ def arabic_to_roman(arabic):
     romans_pointer = 0
 
     for i in range(str_arabic_len):
+        print(int(str_arabic[i]))
         if str_arabic[i] in ['0', '1', '2', '3']:
             result = romans[romans_pointer] * int(str_arabic[i]) + result
         elif str_arabic[i] in ['4']:
@@ -75,7 +76,7 @@ def calculate(string):
     operand = symbols_list[1]
 
     if operand not in OPERANDS:
-        return 'There is now operand like this'
+        return 'There is no operand like this'
 
     elif num1.isdigit() and num2.isdigit():
         num1, num2 = int(num1), int(num2)
@@ -89,9 +90,11 @@ def calculate(string):
         num1, num2 = roman_to_arabic(num1), roman_to_arabic(num2)
 
         if numbers_check(num1, num2):
-            if num1 < num2 and operand == '-':
-                return 'There are no negative numbers in the Roman numeral system.'
+            if num1 <= num2 and operand == '-':
+                return 'There are no negative numbers (and zero) in the Roman numeral system.'
             return arabic_to_roman(arabic_calc(num1=num1, operand=operand, num2=num2))
+        else:
+            return 'One or both numbers are not in the specified numeric range.'
 
     elif roman_check(num1) and num2.isdigit() or \
             roman_check(num2) and num1.isdigit():
