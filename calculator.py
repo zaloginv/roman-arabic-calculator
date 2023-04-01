@@ -38,7 +38,6 @@ def arabic_to_roman(arabic):
     romans_pointer = 0
 
     for i in range(str_arabic_len):
-        print(int(str_arabic[i]))
         if str_arabic[i] in ['0', '1', '2', '3']:
             result = romans[romans_pointer] * int(str_arabic[i]) + result
         elif str_arabic[i] in ['4']:
