@@ -5,14 +5,15 @@ RIGHT_BORDER = 100
 
 
 def arabic_calc(num1, operand, num2):
-    if operand == '+':
-        result = num1 + num2
-    elif operand == '-':
-        result = num1 - num2
-    elif operand == '*':
-        result = num1 * num2
-    elif operand == '/':
-        result = int(num1 / num2)
+    match operand:
+        case '+':
+            result = num1 + num2
+        case '-':
+            result = num1 - num2
+        case '*':
+            result = num1 * num2
+        case '/':
+            result = int(num1 / num2)
 
     return result
 
@@ -76,7 +77,7 @@ def calculate(string):
     operand = symbols_list[1]
 
     if operand not in OPERANDS:
-        return 'There is no operand like this'
+        return 'There is no operand like this.'
 
     elif num1.isdigit() and num2.isdigit():
         num1, num2 = int(num1), int(num2)
